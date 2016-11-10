@@ -52,9 +52,9 @@
             <field name="res_model">purchase.order</field>
             <field name="view_mode">tree,form</field>
             <!-- field name="search_view_id" ref="sale.view_sales_order_filter"/ -->
-            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+            <field name="domain">[('state', 'in', ('done', 'purchase'))]</field>
             <field name="context">{}</field>
-            <field name="help">We haven't sent you any sales order.</field>
+            <field name="help">We haven't sent you any purchase order.</field>
         </record>
 
         <menuitem name="Purchase Orders" id="portal_purchase_orders" parent="portal.portal_orders"
