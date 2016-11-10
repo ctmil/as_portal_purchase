@@ -2,59 +2,51 @@
 <openerp>
     <data>
 
-        <!-- record id="view_order_form_portal_sale" model="ir.ui.view">
-            <field name="name">sale.order.form.portal_sale</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="groups_id" eval="[(4, ref('base.group_portal'))]"/>
+
+        <record id="purchase_order_form_portal" model="ir.ui.view">
+            <field name="name">purchase.order.form.portal</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_portal') ])]"/>
             <field name="arch" type="xml">
-                <data>
-                    <header position="replace">
-                        <field name="state" invisible="1"/>
-                    </header>
-                    <xpath expr='//field[@name="order_line"]/form//field[@name="procurement_ids"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/form//field[@name="product_id"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/form//field[@name="qty_delivered_updateable"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/form//label[@for="qty_delivered"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/form//field[@name="qty_delivered"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/form//label[@for="qty_invoiced"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/form//field[@name="qty_invoiced"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/form//field[@name="price_unit"]' position="attributes">
-                        <attribute name="attrs">{}</attribute>
-                    </xpath>
-                    <xpath expr='//field[@name="order_line"]/form//field[@name="tax_id"]' position="attributes">
-                        <attribute name="attrs">{}</attribute>
-                    </xpath>
-                    <xpath expr='//field[@name="order_line"]/tree//field[@name="procurement_ids"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/tree//field[@name="product_id"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/tree//field[@name="qty_delivered_updateable"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/tree//field[@name="qty_delivered"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/tree//field[@name="qty_invoiced"]' position="replace"/>
-                    <xpath expr='//field[@name="order_line"]/tree//field[@name="price_unit"]' position="attributes">
-                        <attribute name="attrs">{}</attribute>
-                    </xpath>
-                    <xpath expr='//field[@name="order_line"]/tree//field[@name="tax_id"]' position="attributes">
-                        <attribute name="attrs">{}</attribute>
-                    </xpath>
-                    <xpath expr='//field[@name="order_line"]/kanban//field[@name="product_id"]' position="replace">
-                        <field name="name"/>
-                    </xpath>
-                    <xpath expr='//field[@name="order_line"]/kanban/templates/t/div//span/t' position="replace">
-                        <t t-esc="record.name.value"/>
-                    </xpath>
-                </data>
+                <button name="action_rfq_send"  position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
+                <button name="print_quotation"  position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
+                <button name="button_confirm"  position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
+                <button name="button_approve"  position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
+                <button name="button_cancel" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
+                <button name="button_done" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
+                <button name="action_view_picking" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
+                <button name="action_rfq_send" states="purchase" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </button>
             </field>
-        </record -->
+        </record>
+
+
 
         <record id="action_purchase_orders_portal" model="ir.actions.act_window">
-            <field name="name">Purchase Orders</field>
+            <field name="name">Ordenes de compra</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">purchase.order</field>
             <field name="view_mode">tree,form</field>
             <!-- field name="search_view_id" ref="sale.view_sales_order_filter"/ -->
             <field name="domain">[('state', 'in', ('done', 'purchase'))]</field>
             <field name="context">{}</field>
-            <field name="help">We haven't sent you any purchase order.</field>
+            <field name="help">No le hemos enviado ninguna orden de compra.</field>
         </record>
 
         <menuitem name="Purchase Orders" id="portal_purchase_orders" parent="portal.portal_orders"
